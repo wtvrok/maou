@@ -179,7 +179,7 @@
     </div>
 
     <div id="lvl2" class="lvl card hidden">
-        <h2>🖼️ Stage 2: Photo Scramble 🖼️</h2>
+        <h2>🖼️ Stage 2: Photo  🖼️</h2>
         <p class="instruction"> Drag the letters into the correct slots to reveal parts of the photo!</p>
         <div id="photo-grid"></div>
         <div class="slot-container" id="slots" style="display:grid; grid-template-columns:repeat(7,1fr); gap:6px; margin-bottom:15px; width:100%;"></div>
@@ -375,18 +375,25 @@ function setupScramble() {
         t.innerText = c; 
         t.draggable = true;
         t.addEventListener('dragstart', () => draggedTile = t); 
-        t.addEventListener('touchstart', () => draggedTile = t); 
+        t.addEventListener('touchstart', (e) => { 
+            e.preventDefault();
+            draggedTile = t; 
+        }); 
+        t.addEventListener('touchmove', (e) => e.preventDefault());
         tr.appendChild(t);
     });
 
-    // Mobile Support
+    // Mobile Support - IMPROVED
     sl.addEventListener('touchend', (e) => {
         if(!draggedTile) return; 
+        e.preventDefault();
         const touch = e.changedTouches[0]; 
-        const target = document.elementFromPoint(touch.clientX, touch.clientY);
-        const slot = target ? target.closest('.drop-slot') : null; 
-        if(slot) handleDrop(null, parseInt(slot.dataset.index));
-    });
+        const slot = document.elementFromPoint(touch.clientX, touch.clientY)?.closest('.drop-slot');
+        if(slot) {
+            handleDrop(null, parseInt(slot.dataset.index));
+        }
+        draggedTile = null;
+    }, false);
 }
 
 function handleDrop(e, slotIdx) {
