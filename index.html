@@ -341,7 +341,7 @@
         if(solvedCats === 4) {
             const footer = document.getElementById('conn-footer'); footer.innerHTML = `<div style="display:flex; justify-content:center; gap:12px; margin-top:15px;"></div>`;
             for(let i=0; i<(4-mistakes); i++) { 
-                const s = document.createElement('span'); s.className='star'; s.innerText='⭐'; 
+                const s = document.createElement('span'); s.className='star'; s.innerText='🌟'; 
                 s.style.animationDelay=(i*0.1)+'s'; footer.firstChild.appendChild(s); 
             }
             setTimeout(() => showLvl('lvl2'), 2500);
@@ -659,7 +659,7 @@ function handleDrop(e, slotIdx) {
     function startPhotoCycle() {
         if (cycleActive) return; cycleActive = true;
         photoSets.forEach((set, i) => { const el = document.getElementById(`lane-${i}`); if(el) el.style.backgroundImage = `url('${set.a}')`; });
-        setInterval(() => { photoSets.forEach((set, i) => { const el = document.getElementById(`lane-${i}`); if(el) el.style.backgroundImage = `url('${Math.random() > 0.5 ? set.b : set.a}')`; }); }, 2500);
+        setInterval(() => { photoSets.forEach((set, i) => { const el = document.getElementById(`lane-${i}`); if(el) el.style.backgroundImage = `url('${Math.random() > 0.5 ? set.b : set.a}')`; }); }, 3500);
     }
 
     function runAutoVaultTimer() {
