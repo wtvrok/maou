@@ -655,13 +655,28 @@ function handleDrop(e, slotIdx) {
         document.querySelectorAll('.wordle-cell').forEach(c => { c.innerText = ""; c.className = "wordle-cell"; });
         document.querySelectorAll('.key').forEach(k => k.classList.remove('correct', 'present', 'absent'));
     }
-
-    function startPhotoCycle() {
-        if (cycleActive) return; cycleActive = true;
-        photoSets.forEach((set, i) => { const el = document.getElementById(`lane-${i}`); if(el) el.style.backgroundImage = `url('${set.a}')`; });
-        setInterval(() => { photoSets.forEach((set, i) => { const el = document.getElementById(`lane-${i}`); if(el) el.style.backgroundImage = `url('${Math.random() > 0.5 ? set.b : set.a}')`; }); }, 3500);
-    }
-
+function startPhotoCycle() {
+    if (cycleActive) return; cycleActive = true;
+    
+    photoSets.forEach((set, i) => { 
+        const el = document.getElementById(`lane-${i}`); 
+        if(el) el.style.backgroundImage = `url('${set.a}')`;
+    });
+    
+    setInterval(() => { 
+        photoSets.forEach((set, i) => { 
+            const el = document.getElementById(`lane-${i}`); 
+            if(el) {
+                // Fade out, change image, fade in
+                el.style.opacity = '0';
+                setTimeout(() => {
+                    el.style.backgroundImage = `url('${Math.random() > 0.5 ? set.b : set.a}')`;
+                    el.style.opacity = '1';
+                }, 400);
+            }
+        }); 
+    }, 3000);
+}
     function runAutoVaultTimer() {
         let count = 20; const timerText = document.getElementById('vault-timer');
         const itv = setInterval(() => { count--; if (timerText) timerText.innerText = `${count}s...`; if(count === 0) { clearInterval(itv); showLvl('lvl3'); } }, 1000);
