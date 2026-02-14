@@ -335,7 +335,6 @@
     }
 
     // Stage 2
-    
 function setupScramble() {
     const pg = document.getElementById('photo-grid'), 
           sl = document.getElementById('slots'), 
@@ -347,7 +346,7 @@ function setupScramble() {
     document.getElementById('scramble-hint-btn').classList.remove('hidden');
     document.getElementById('scramble-finish-area').classList.add('hidden');
 
-    // Create the photo slices in strict 0-6 order (no randomization here)
+    // Create the photo slices
     for(let i=0; i<7; i++) {
         let slice = document.createElement('div'); 
         slice.className = 'photo-slice'; 
@@ -362,7 +361,7 @@ function setupScramble() {
         sl.appendChild(slot);
     }
     
-    // SCRAMBLE THE TEXT: Shuffle the letters for the tray only
+    // SCRAMBLE THE TEXT
     let letters = secretPhrase.split(''); 
     let shuffled;
     do { 
@@ -372,30 +371,85 @@ function setupScramble() {
     shuffled.forEach(c => {
         let t = document.createElement('div'); 
         t.className = 'drag-tile'; 
-        t.innerText = c; 
+        t.innerText = c;
         t.draggable = true;
-        t.addEventListener('dragstart', () => draggedTile = t); 
-        t.addEventListener('touchstart', (e) => { 
+        
+        // Desktop drag events
+        t.addEventListener('dragstart', (e) => {
+            draggedTile = t;
+            e.dataTransfer.effectAllowed = 'move';
+        });
+        
+        // Mobile touch events - PROPER IMPLEMENTATION
+        let touchStartX, touchStartY;
+        
+        t.addEventListener('touchstart', (e) => {
+            draggedTile = t;
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            t.style.opacity = '0.5';
+            t.style.zIndex = '9999';
+        });
+        
+        t.addEventListener('touchmove', (e) => {
+            if (!draggedTile) return;
             e.preventDefault();
-            draggedTile = t; 
-        }); 
-        t.addEventListener('touchmove', (e) => e.preventDefault());
+            e.stopPropagation();
+        });
+        
+        t.addEventListener('touchend', (e) => {
+            if (!draggedTile) return;
+            e.preventDefault();
+            
+            const touch = e.changedTouches[0];
+            const endElement = document.elementFromPoint(touch.clientX, touch.clientY);
+            const slot = endElement?.closest('.drop-slot');
+            
+            // Reset tile styling
+            t.style.opacity = '1';
+            t.style.zIndex = '100';
+            
+            if (slot) {
+                handleDrop(null, parseInt(slot.dataset.index));
+            }
+            
+            draggedTile = null;
+        });
+        
         tr.appendChild(t);
     });
-
-    // Mobile Support - IMPROVED
-    sl.addEventListener('touchend', (e) => {
-        if(!draggedTile) return; 
-        e.preventDefault();
-        const touch = e.changedTouches[0]; 
-        const slot = document.elementFromPoint(touch.clientX, touch.clientY)?.closest('.drop-slot');
-        if(slot) {
-            handleDrop(null, parseInt(slot.dataset.index));
-        }
-        draggedTile = null;
-    }, false);
 }
 
+function handleDrop(e, slotIdx) {
+    if(e) e.preventDefault(); 
+    if(!draggedTile) return;
+
+    if(draggedTile.innerText === secretPhrase[slotIdx]) {
+        const slot = document.getElementById('slots').children[slotIdx];
+        slot.innerText = draggedTile.innerText; 
+        slot.style.background = "var(--green)";
+        
+        // REVEAL IN ORDER
+        document.getElementById('photo-grid').children[slotIdx].style.filter = "blur(0)";
+        
+        draggedTile.remove(); 
+        draggedTile = null; 
+        scramProg++;
+        
+        if(scramProg === 7) {
+            document.getElementById('tray').classList.add('hidden');
+            document.getElementById('scramble-hint-btn').classList.add('hidden');
+            document.getElementById('scramble-finish-area').classList.remove('hidden');
+            
+            setTimeout(() => showLvl('transition-lvl'), 10000); 
+        }
+    } else { 
+        draggedTile.classList.add('shake'); 
+        setTimeout(() => draggedTile.classList.remove('shake'), 400); 
+        draggedTile = null; 
+    }
+}
+        
 function handleDrop(e, slotIdx) {
     if(e) e.preventDefault(); 
     if(!draggedTile) return;
