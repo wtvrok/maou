@@ -138,12 +138,6 @@
 </head>
 <body>
 
-    <nav>
-    <b>Skip:</b>
-    <a onclick="showLvl('access-lvl')">Log</a> <a onclick="showLvl('lvl1')">1</a> <a onclick="showLvl('lvl2')">2</a> 
-    <a onclick="showLvl('transition-lvl')">Lane</a> <a onclick="showLvl('lvl3')">3</a> 
-    <a onclick="showLvl('lvl4')">4</a> <a onclick="showLvl('win-screen')">End</a>
-</nav>
 
     <div id="access-lvl" class="lvl card">
         <h2>💘 Welcome, C 💘</h2>
@@ -462,12 +456,12 @@ function handleDrop(e, slotIdx) {
         starDiv.style.animation = "fadeIn 0.5s ease-in-out";
         starDiv.innerHTML = `
             <div style="display:flex; justify-content:center; gap:15px; margin-bottom:12px;">
-                <span class="star">⭐</span>
-                <span class="star" style="animation-delay:0.2s;">⭐</span>
-                <span class="star" style="animation-delay:0.4s;">⭐</span>
+                <span class="star">🧠</span>
+                <span class="star" style="animation-delay:0.2s;">💥</span>
+                <span class="star" style="animation-delay:0.4s;">👌🏾</span>
             </div>
             <p style="font-weight:bold; color:var(--pink); font-size:1rem; letter-spacing:1px;">
-                VAULT DECRYPTED. STANDBY...
+                NOICEEE...
             </p>
         `;
         
@@ -548,7 +542,7 @@ function handleDrop(e, slotIdx) {
             // 3. APPLY FADE-IN: We use the existing class from your CSS
             revealBtn.className = "fade-entrance"; 
             
-            revealBtn.innerText = "open newest archive log 💌";
+            revealBtn.innerText = "Open Newest Archive Log 💌";
             revealBtn.style.marginTop = "25px";
             revealBtn.style.padding = "15px 30px";
             revealBtn.style.width = "100%";
