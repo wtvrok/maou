@@ -46,8 +46,26 @@
         .photo-slice { flex: 1; height: 100%; background-image: url('us.jpg'); background-size: 700% 100%; filter: blur(25px); transition: filter 0.5s; }
         .drop-slot { height: 48px; border: 2px dashed var(--purple); border-radius: 10px; background: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; }
         .tile-tray { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; padding: 12px; background: var(--gray); border-radius: 15px; min-height: 70px; width: 100%; box-sizing: border-box; }
-        .drag-tile { width: 44px; height: 48px; background: var(--white); border: 2px solid var(--pink); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: grab; touch-action: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-
+        .drag-tile { 
+    width: 44px; 
+    height: 48px; 
+    background: var(--white); 
+    border: 2px solid var(--pink); 
+    border-radius: 8px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-weight: bold; 
+    cursor: grab; 
+    
+    /* MOBILE FIXES */
+    touch-action: none; 
+    user-select: none;
+    -webkit-user-select: none; /* Specifically for Safari/iPhone */
+    color: var(--text) !important; /* Forces the letter to be visible */
+    z-index: 100;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
         /* Memory Lane Gallery */
         .lane-photo { width: 100%; aspect-ratio: 1; border-radius: 12px; background-size: cover; border: 2px solid var(--pink); transition: background-image 1.2s ease-in-out; }
 
