@@ -257,7 +257,7 @@
         <div id="wordle-hint-box" class="hint-row hidden">💡 <b>Note:</b> Not a word. 😔 Try another!</div>
         <div class="wordle-grid" id="wordle-grid"></div> 
         <div class="keyboard" id="keyboard" style="display:flex; flex-direction:column; gap:5px; width:100%;"></div>
-        <input type="text" id="wordle-device-input" style="position: absolute; left: -9999px; opacity: 0;" autocomplete="off" />
+        <input type="text" id="wordle-device-input" style="position: absolute; left: -9999px; opacity: 0;" autocomplete="off" aria-label="Hidden input for keyboard support" />
     </div>
 
     <div id="win-screen" class="lvl card hidden">
@@ -290,7 +290,7 @@
     ];
     const photoSets = [ { a: '1a.jpg', b: '1b.jpg' }, { a: '2a.jpg', b: '2b.jpg' }, { a: '3a.jpg', b: '3b.jpg' }, { a: '4a.jpg', b: '4b.jpg' }, { a: '5a.jpg', b: '5b.jpg' }, { a: '6a.jpg', b: '6b.jpg' } ];
 
-    let mistakes = 0, solvedCats = 0, scramProg = 0, matches = 0, wordleAt = 0, curGuess = "", firstCard = null, secondCard = null, draggedTile = null, cycleActive = false;
+    let mistakes = 0, solvedCats = 0, scramProg = 0, matches = 0, wordleAt = 0, curGuess = "", firstCard = null, secondCard = null, draggedTile = null, cycleActive = false, wordleKeyHandler = null;
 
     function showLvl(id) {
         document.querySelectorAll('.lvl').forEach(l => {
@@ -621,15 +621,18 @@ function handleDrop(e, slotIdx) {
         
         // Device keyboard support
         const deviceInput = document.getElementById('wordle-device-input');
-        deviceInput.focus();
         deviceInput.value = '';
         
-        // Focus the hidden input when the card is visible
-        const focusInput = () => deviceInput.focus();
-        document.getElementById('lvl4').addEventListener('click', focusInput);
+        // Focus the hidden input when user interacts with the game area
+        setTimeout(() => deviceInput.focus(), 100);
+        
+        // Remove previous handler if exists
+        if (wordleKeyHandler) {
+            deviceInput.removeEventListener('keydown', wordleKeyHandler);
+        }
         
         // Handle keyboard events
-        const handleKeyPress = (e) => {
+        wordleKeyHandler = (e) => {
             const key = e.key.toLowerCase();
             
             if (key === 'backspace') {
@@ -651,7 +654,7 @@ function handleDrop(e, slotIdx) {
             deviceInput.value = '';
         };
         
-        deviceInput.addEventListener('keydown', handleKeyPress);
+        deviceInput.addEventListener('keydown', wordleKeyHandler);
     }
 
     async function validateWordle() {
