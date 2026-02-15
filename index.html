@@ -3,38 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wordle Game</title>
-    <style>
-        /* Reduce memory pairs font size */
-        .memory-pairs {
-            font-size: 14px; /* Adjust the font size as needed */
-        }
-
-        /* Make wordle keys square */
-        .wordle-key {
-            width: 50px; /* Set width to match height */
-            height: 50px;
-        }
-
-        /* Enable device keyboard for wordle */
-        body {
-            touch-action: manipulation; /* Enable touch events for mobile devices */
-        }
-    </style>
+    <title>Wordle</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Welcome to Wordle</h1>
-    <div class="memory-pairs">Memory Pairs Section</div>
-    <div class="wordle-keys">
-        <button class="wordle-key">A</button>
-        <button class="wordle-key">B</button>
-        <!-- Add more keys as needed -->
+    <div class="mem-card">
+        <!-- Memory pairs content here -->
     </div>
+    <div class="key" style="aspect-ratio: 1;">
+        <!-- Wordle keys content here -->
+    </div>
+
     <script>
-        // Implement keyboard functionality for wordle
-        document.addEventListener('keydown', function(event) {
-            // Logic to handle keyboard input for Wordle
-        });
+        function setupWordle() {
+            document.addEventListener('keydown', function(event) {
+                const key = event.key;
+                if(/^[a-z]$/.test(key) || key === 'Backspace' || key === 'Enter') {
+                    // Handle key events for letters (a-z), backspace, and enter keys
+                }
+            });
+        }
     </script>
 </body>
 </html>
