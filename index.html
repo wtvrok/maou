@@ -36,7 +36,7 @@
         #photo-grid { 
             display: flex; 
             width: 100%; 
-            aspect-ratio: 9 / 16; 
+            aspect-ratio: 9 / 16; /* Override to 3/4 at 390px+ for wider devices */
             height: auto !important; 
             border-radius: 15px; 
             overflow: hidden; 
@@ -142,7 +142,7 @@
 }
 
         /* Stage 4: Wordle Fixed Aspect Ratio */
-        .wordle-grid, .keyboard { width: 100%; max-width: 430px; margin: 0 auto; margin-top: 15px}
+        .wordle-grid, .keyboard { width: 100%; max-width: 430px; margin: 0 auto; margin-top: 15px; }
         .wordle-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: clamp(4px, 1vw, 8px); margin-bottom: clamp(4px, 1vw, 8px); }
         .wordle-cell { aspect-ratio: 1 !important; height: auto !important; border: 2px solid var(--purple); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: clamp(1.2rem, 3vw, 1.8rem); text-transform: uppercase; border-radius: 10px; transition: 0.6s; background: white; }
         .wordle-cell.correct { background: var(--green); border-color: #a0c35a; transform: rotateX(360deg); }
@@ -170,19 +170,11 @@
         }
 
         @media (min-width: 430px) {
-            .wordle-grid, .keyboard {
-                max-width: 420px;
-            }
-            
             .grid {
                 gap: 10px;
             }
             
             .mem-grid, .bank-grid {
-                gap: 8px;
-            }
-            
-            .slot-container {
                 gap: 8px;
             }
         }
