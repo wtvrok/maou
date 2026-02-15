@@ -623,7 +623,7 @@ function handleDrop(e, slotIdx) {
         const deviceInput = document.getElementById('wordle-device-input');
         deviceInput.value = '';
         
-        // Focus the hidden input when user interacts with the game area
+        // Focus the hidden input after a brief delay to avoid disrupting screen readers
         setTimeout(() => deviceInput.focus(), 100);
         
         // Remove previous handler if exists
