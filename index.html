@@ -142,15 +142,15 @@
 }
 
         /* Stage 4: Wordle Fixed Aspect Ratio */
-                .wordle-grid, .keyboard { width: 100%; max-width: 430px; margin: 0 auto; margin-top: clamp(12px, 3vw, 20px); padding: 0 8px; box-sizing: border-box; }
+                .wordle-grid, .keyboard { width: 100%; max-width: 430px;margin: 0 auto; margin-top: clamp(12px, 3vw, 20px); display: flex; flex-direction: column; gap: 6px; box-sizing: border-box; }
         .wordle-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: clamp(4px, 1vw, 8px); margin-bottom: clamp(4px, 1vw, 8px); }
         .wordle-cell { aspect-ratio: 1 !important; height: auto !important; border: 2px solid var(--purple); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: clamp(1.2rem, 3vw, 1.8rem); text-transform: uppercase; border-radius: 10px; transition: 0.6s; background: white; }
         .wordle-cell.correct { background: var(--green); border-color: #a0c35a; transform: rotateX(360deg); }
         .wordle-cell.present { background: var(--accent); border-color: #f9df6d; transform: rotateX(360deg); }
         .wordle-cell.absent { background: var(--gray); border-color: #d3d3d3; color: var(--text); transform: rotateX(360deg); }
-        .key { background: var(--gray); border-radius: 6px; padding: 8px; min-width: 44px; width: 44px; height: 44px; flex: 0 0 auto; font-weight: bold; cursor: pointer; font-size: clamp(0.7rem, 1.8vw, 0.9rem); text-transform: uppercase; user-select: none; display: flex; align-items: center; justify-content: center; }
+        .key { background: var(--gray); border-radius: 6px; flex: 1; min-width: 0; height: 48px; font-weight: bold; cursor: pointer; font-size: clamp(0.7rem, 2.5vw, 0.9rem); text-transform: uppercase; user-select: none; display: flex; align-items: center; justify-content: center; }
         .key.correct { background: var(--green); } .key.present { background: var(--accent); } .key.absent { background: var(--gray); color: var(--white); }
-        .key.wide { width: 66px; } /* Wider for delete and enter keys */
+        .key.wide { flex: 1.5;}
 
         /* UI Styling */
         .hint-row { background: var(--gray); padding: 12px; border-radius: 15px; font-size: clamp(0.7rem, 1.8vw, 0.85rem); margin: 10px 0; line-height: 1.4; color: var(--text); border-left: 5px solid var(--pink); text-align: left; }
