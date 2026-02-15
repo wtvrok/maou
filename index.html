@@ -211,7 +211,7 @@
             <div style="font-size: 0.9rem; background: white; padding: 15px; border-radius: 15px; margin-top: 15px; border: 2px solid white; color: var(--text);">
                  <b>Btw,</b> I still really like you, a lot.
                  <br><small id="scramble-loading-text" style="opacity: 0.7;">Loading more memories...</small>
-                <br><small style="opacity: 0.7;">💕 💕 💕</small>
+                <br><span class="star">💕</span><span class="star" style="animation-delay: 0.2s;">💕</span><span class="star" style="animation-delay: 0.4s;">💕</span>
             </div>
         </div>
         <div id="scramble-hint-box" class="hint-row hidden">💡 <b>Hint:</b> This is what we said when we were too scared to say 'I love you', we did not know Japanese at the time though!</div>
@@ -227,6 +227,7 @@
         <div class="photo-lane">
             <div id="lane-0" class="lane-photo"></div><div id="lane-1" class="lane-photo"></div><div id="lane-2" class="lane-photo"></div>
             <div id="lane-3" class="lane-photo"></div><div id="lane-4" class="lane-photo"></div><div id="lane-5" class="lane-photo"></div>
+            <div id="lane-6" class="lane-photo"></div><div id="lane-7" class="lane-photo"></div><div id="lane-8" class="lane-photo"></div>
         </div>
         <div style="font-size:0.85rem; background:var(--gray); padding:15px; border-radius:15px; line-height:1.5; border-left: 5px solid var(--pink);">
             "A quick look back...♡"
@@ -288,7 +289,7 @@
         { word: "POPCORN", hint: "YOUR FAV PART OF MOVIES", letter: "P" }, { word: "LILIANAS", hint: "FARMERS MARKET FAV", letter: "I" },
         { word: "SAVANNAH", hint: "ANNIVERSARY TRIP", letter: "D" }, { word: "BOARD GAMES", hint: "ONE OF OUR HOBBIES", letter: "S" }
     ];
-    const photoSets = [ { a: '1a.jpg', b: '1b.jpg' }, { a: '2a.jpg', b: '2b.jpg' }, { a: '3a.jpg', b: '3b.jpg' }, { a: '4a.jpg', b: '4b.jpg' }, { a: '5a.jpg', b: '5b.jpg' }, { a: '6a.jpg', b: '6b.jpg' } ];
+    const photoSets = [ { a: '1a.jpg', b: '1b.jpg' }, { a: '2a.jpg', b: '2b.jpg' }, { a: '3a.jpg', b: '3b.jpg' }, { a: '4a.jpg', b: '4b.jpg' }, { a: '5a.jpg', b: '5b.jpg' }, { a: '6a.jpg', b: '6b.jpg' }, { a: '1a.jpg', b: '1b.jpg' }, { a: '2a.jpg', b: '2b.jpg' }, { a: '3a.jpg', b: '3b.jpg' } ];
 
     let mistakes = 0, solvedCats = 0, scramProg = 0, matches = 0, wordleAt = 0, curGuess = "", firstCard = null, secondCard = null, draggedTile = null, cycleActive = false, wordleKeyHandler = null;
 
