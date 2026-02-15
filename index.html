@@ -46,7 +46,7 @@
         .photo-slice { flex: 1; height: 100%; background-image: url('us.jpg'); background-size: 700% 100%; filter: blur(25px); transition: filter 0.5s; }
         .slot-container { display: grid; grid-template-columns: repeat(7, 1fr); gap: clamp(4px, 1vw, 8px); margin-bottom: 15px; width: 100%; }
         .drop-slot { min-height: 44px; height: auto; border: 2px dashed var(--purple); border-radius: 10px; background: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: clamp(1rem, 2.8vw, 1.4rem); padding: 4px; }
-        .tile-tray { display: flex; justify-content: center; gap: clamp(6px, 1.5vw, 10px); flex-wrap: wrap; padding: 12px; background: var(--gray); border-radius: 15px; min-height: 70px; width: 100%; box-sizing: border-box; }
+        .tile-tray { display: flex; justify-content: center; gap: clamp(6px, 1.5vw, 10px); flex-wrap: wrap; padding: 12px; margin-top: 10px; background: var(--gray); border-radius: 15px; min-height: 70px; width: 100%; box-sizing: border-box; }
         .drag-tile { 
     min-width: 44px; 
     min-height: 44px; 
@@ -209,8 +209,7 @@
         <div class="tile-tray" id="tray"></div>
         <div id="scramble-finish-area" class="hidden">
             <div style="font-size: 0.9rem; background: white; padding: 15px; border-radius: 15px; margin-top: 15px; border: 2px solid white; color: var(--text);">
-                 <b>Btw,</b> I still really like you, a lot.
-                 <br><small id="scramble-loading-text" style="opacity: 0.7;">Loading more memories...</small>
+                 <b>By the way,</b> I still really like you, a lot.
                 <br><span class="star">💕</span><span class="star" style="animation-delay: 0.2s;">💕</span><span class="star" style="animation-delay: 0.4s;">💕</span>
             </div>
         </div>
@@ -289,7 +288,7 @@
         { word: "POPCORN", hint: "YOUR FAV PART OF MOVIES", letter: "P" }, { word: "LILIANAS", hint: "FARMERS MARKET FAV", letter: "I" },
         { word: "SAVANNAH", hint: "ANNIVERSARY TRIP", letter: "D" }, { word: "BOARD GAMES", hint: "ONE OF OUR HOBBIES", letter: "S" }
     ];
-    const photoSets = [ { a: '1a.jpg', b: '1b.jpg' }, { a: '2a.jpg', b: '2b.jpg' }, { a: '3a.jpg', b: '3b.jpg' }, { a: '4a.jpg', b: '4b.jpg' }, { a: '5a.jpg', b: '5b.jpg' }, { a: '6a.jpg', b: '6b.jpg' }, { a: '1a.jpg', b: '1b.jpg' }, { a: '2a.jpg', b: '2b.jpg' }, { a: '3a.jpg', b: '3b.jpg' } ];
+    const photoSets = [ { a: '1a.jpg', b: '1b.jpg' }, { a: '2a.jpg', b: '2b.jpg' }, { a: '3a.jpg', b: '3b.jpg' }, { a: '4a.jpg', b: '4b.jpg' }, { a: '5a.jpg', b: '5b.jpg' }, { a: '6a.jpg', b: '6b.jpg' }, { a: '7a.jpg', b: '7b.jpg' }, { a: '8a.jpg', b: '8b.jpg' }, { a: '9a.jpg', b: '9b.jpg' } ];
 
     let mistakes = 0, solvedCats = 0, scramProg = 0, matches = 0, wordleAt = 0, curGuess = "", firstCard = null, secondCard = null, draggedTile = null, cycleActive = false, wordleKeyHandler = null;
 
