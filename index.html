@@ -7,36 +7,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root { --pink: #FAD8D6; --purple: #E6E6FA; --green: #9CD08F; --text: #7B5E7B; --accent: #FDFD96; --white: #FFFFFF; --gray: #f9f3f9; }
-        body { background: var(--white); font-family: 'Quicksand', sans-serif; color: var(--text); margin: 0; padding: 10px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; touch-action: manipulation; }
+        body { background: var(--white); font-family: 'Quicksand', sans-serif; color: var(--text); margin: 0; padding: clamp(8px, 2vw, 15px); display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; touch-action: manipulation; }
         
         /* Smooth Entrance */
         .lvl { width: 100%; display: flex; flex-direction: column; align-items: center; }
         .fade-entrance { animation: fadeIn 0.8s ease-in-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        nav { background: rgba(255, 255, 255, 0.9); padding: 8px; border-radius: 10px; margin-bottom: 15px; font-size: 0.6rem; display: flex; gap: 10px; border: 1px dashed var(--pink); z-index: 100; }
+        nav { background: rgba(255, 255, 255, 0.9); padding: 8px; border-radius: 10px; margin-bottom: 15px; font-size: clamp(0.55rem, 1.5vw, 0.75rem); display: flex; gap: 10px; border: 1px dashed var(--pink); z-index: 100; }
         nav a { cursor: pointer; text-decoration: underline; color: var(--text); }
 
-        .card { background: var(--white); padding: 20px; border-radius: 30px; box-shadow: 0 10px 30px rgba(255, 182, 193, 0.2); width: 95%; max-width: 460px; text-align: center; border: 2px solid var(--pink); margin-top: 20px; margin-bottom: 20px; box-sizing: border-box; }
+        .card { background: var(--white); padding: clamp(15px, 4vw, 25px); border-radius: 30px; box-shadow: 0 10px 30px rgba(255, 182, 193, 0.2); width: 95%; max-width: 460px; text-align: center; border: 2px solid var(--pink); margin-top: clamp(15px, 3vw, 20px); margin-bottom: clamp(15px, 3vw, 20px); box-sizing: border-box; }
         .hidden { display: none !important; }
-        h2 { margin: 0; color: var(--text); font-size: 1.2rem; }
-        .instruction { font-size: 0.8rem; margin: 5px 0 15px 0; opacity: 0.8; font-weight: 500; }
-        button { background: var(--green); border: none; padding: 12px 20px; border-radius: 15px; color: white; font-weight: bold; cursor: pointer; margin-top: 15px; transition: 0.3s; }
+        h2 { margin: 0; color: var(--text); font-size: clamp(1.1rem, 3vw, 1.4rem); }
+        .instruction { font-size: clamp(0.75rem, 2vw, 0.95rem); margin: 5px 0 15px 0; opacity: 0.8; font-weight: 500; }
+        button { background: var(--green); border: none; padding: 12px 20px; border-radius: 15px; color: white; font-weight: bold; cursor: pointer; margin-top: 15px; transition: 0.3s; min-height: 44px; min-width: 44px; }
 
         /* Stage 1: Connections */
-        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 10px 0; width: 100%; }
-        .tile { background: var(--purple); padding: 5px; border-radius: 10px; font-size: 0.7rem; font-weight: bold; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; cursor: pointer; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(6px, 1.5vw, 10px); margin: 10px 0; width: 100%; }
+        .tile { background: var(--purple); padding: 5px; border-radius: 10px; font-size: clamp(0.65rem, 1.8vw, 0.85rem); font-weight: bold; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; cursor: pointer; text-align: center; min-height: 44px; }
         .tile.selected { background: var(--pink); color: white; }
-        .category-banner { width: 100%; padding: 10px 0; margin-bottom: 8px; border-radius: 12px; font-weight: bold; text-transform: uppercase; font-size: 0.75rem; display: flex; flex-direction: column; align-items: center; animation: popIn 0.4s ease-out; }
+        .category-banner { width: 100%; padding: 10px 0; margin-bottom: 8px; border-radius: 12px; font-weight: bold; text-transform: uppercase; font-size: clamp(0.7rem, 2vw, 0.85rem); display: flex; flex-direction: column; align-items: center; animation: popIn 0.4s ease-out; }
         .bg-names { background-color: #f9df6d; } .bg-firsts { background-color: #a0c35a; } .bg-repeat { background-color: #b0c4ef; } .bg-texts { background-color: #ba81c5; color: white; }
-        .star { animation: bounce 0.6s infinite alternate; display: inline-block; font-size: 1.5rem; }
+        .star { animation: bounce 0.6s infinite alternate; display: inline-block; font-size: clamp(1.3rem, 3.5vw, 1.8rem); }
         @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-10px); } }
 
         /* Stage 2: FIXED LANDSCAPE SCRAMBLE */
         #photo-grid { 
             display: flex; 
             width: 100%; 
-            aspect-ratio: 9 / 16 !important; /* This forces Landscape */
+            aspect-ratio: 9 / 16; 
             height: auto !important; 
             border-radius: 15px; 
             overflow: hidden; 
@@ -44,11 +44,14 @@
             margin-bottom: 10px; 
         }
         .photo-slice { flex: 1; height: 100%; background-image: url('us.jpg'); background-size: 700% 100%; filter: blur(25px); transition: filter 0.5s; }
-        .drop-slot { height: 48px; border: 2px dashed var(--purple); border-radius: 10px; background: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; }
-        .tile-tray { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; padding: 12px; background: var(--gray); border-radius: 15px; min-height: 70px; width: 100%; box-sizing: border-box; }
+        .slot-container { display: grid; grid-template-columns: repeat(7, 1fr); gap: clamp(4px, 1vw, 8px); margin-bottom: 15px; width: 100%; }
+        .drop-slot { min-height: 44px; height: auto; border: 2px dashed var(--purple); border-radius: 10px; background: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: clamp(1rem, 2.8vw, 1.4rem); padding: 4px; }
+        .tile-tray { display: flex; justify-content: center; gap: clamp(6px, 1.5vw, 10px); flex-wrap: wrap; padding: 12px; background: var(--gray); border-radius: 15px; min-height: 70px; width: 100%; box-sizing: border-box; }
         .drag-tile { 
-    width: 44px; 
-    height: 48px; 
+    min-width: 44px; 
+    min-height: 44px; 
+    width: clamp(44px, 10vw, 52px);
+    height: clamp(44px, 11vw, 56px);
     background: var(--white); 
     border: 2px solid var(--pink); 
     border-radius: 8px; 
@@ -57,6 +60,7 @@
     justify-content: center; 
     font-weight: bold; 
     cursor: grab; 
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
     
     /* MOBILE FIXES */
     touch-action: none; 
@@ -68,15 +72,16 @@
 }
         /* Memory Lane Gallery */
         .lane-photo { width: 100%; aspect-ratio: 1; border-radius: 12px; background-size: cover; border: 2px solid var(--pink); transition: background-image 1.2s ease-in-out; opacity: 1; transition: opacity 0.8s ease-in-out; }
+        .photo-lane { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 15px 0; width: 100%; }
 
         /* Stage 3: Memory Vault (Optimized 72px) */
         .drawer-container { transition: max-height 0.8s ease-in-out; max-height: 1500px; overflow: hidden; width: 100%; display: flex; flex-direction: column; align-items: center; }
         .drawer-collapsed { max-height: 0; }
-        /* UPDATED: 5-Column Grid for perfect alignment */
+/* UPDATED: 5-Column Grid for perfect alignment */
 .mem-grid, .bank-grid { 
     display: grid; 
     grid-template-columns: repeat(5, 1fr); 
-    gap: 6px; 
+    gap: clamp(4px, 1vw, 8px); 
     width: 100%; 
     justify-items: center; 
     margin: 10px 0;
@@ -93,13 +98,13 @@
     transition: transform 0.2s; /* Only animate movement, not size */
     box-sizing: border-box; /* Includes border in the size */
     overflow: hidden; /* Cuts off anything that tries to stick out */
+    min-height: 44px;
 }
 
 /* Specific look for the Memory Cards (Purple) */
-/* Specific look for the Memory Cards (Purple) */
 .mem-card { 
     background: var(--purple); 
-    font-size: 0.55rem; /* Small enough to fit */
+    font-size: clamp(0.45rem, 1.3vw, 0.65rem); /* Small enough to fit */
     font-weight: 700; 
     padding: 1px;       /* Minimal padding to maximize space */
     text-align: center; 
@@ -124,7 +129,7 @@
     border: 2px solid var(--purple); 
     background: #fafafa; 
     font-weight: bold; 
-    font-size: 1.4rem; 
+    font-size: clamp(1.2rem, 3vw, 1.6rem); 
     color: var(--text); 
 }
 
@@ -137,21 +142,60 @@
 }
 
         /* Stage 4: Wordle Fixed Aspect Ratio */
-        .wordle-grid, .keyboard { width: 100%; max-width: 360px; margin: 0 auto; margin-top: 15px}
-        .wordle-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-bottom: 6px; }
-        .wordle-cell { aspect-ratio: 1 !important; height: auto !important; border: 2px solid var(--purple); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.5rem; text-transform: uppercase; border-radius: 10px; transition: 0.6s; background: white; }
+        .wordle-grid, .keyboard { width: 100%; max-width: 430px; margin: 0 auto; margin-top: 15px}
+        .wordle-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: clamp(4px, 1vw, 8px); margin-bottom: clamp(4px, 1vw, 8px); }
+        .wordle-cell { aspect-ratio: 1 !important; height: auto !important; border: 2px solid var(--purple); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: clamp(1.2rem, 3vw, 1.8rem); text-transform: uppercase; border-radius: 10px; transition: 0.6s; background: white; }
         .wordle-cell.correct { background: var(--green); border-color: #a0c35a; transform: rotateX(360deg); }
         .wordle-cell.present { background: var(--accent); border-color: #f9df6d; transform: rotateX(360deg); }
         .wordle-cell.absent { background: var(--gray); border-color: #d3d3d3; color: var(--text); transform: rotateX(360deg); }
-        .key { background: var(--gray); border-radius: 6px; padding: 15px 0; min-width: 25px; flex: 1; font-weight: bold; cursor: pointer; font-size: 0.8rem; text-transform: uppercase; user-select: none; }
+        .key { background: var(--gray); border-radius: 6px; padding: 15px 0; min-width: 25px; flex: 1; font-weight: bold; cursor: pointer; font-size: clamp(0.7rem, 1.8vw, 0.9rem); text-transform: uppercase; user-select: none; min-height: 44px; }
         .key.correct { background: var(--green); } .key.present { background: var(--accent); } .key.absent { background: var(--gray); color: var(--white); }
 
         /* UI Styling */
-        .hint-row { background: var(--gray); padding: 12px; border-radius: 15px; font-size: 0.75rem; margin: 10px 0; line-height: 1.4; color: var(--text); border-left: 5px solid var(--pink); text-align: left; }
-        .pass-input { background: var(--purple); border: 2px solid var(--pink); color: var(--text); padding: 15px; width: 85%; border-radius: 15px; text-align: center; text-transform: uppercase; font-weight: bold; outline: none; margin-bottom: 10px; font-size: 1rem; }
+        .hint-row { background: var(--gray); padding: 12px; border-radius: 15px; font-size: clamp(0.7rem, 1.8vw, 0.85rem); margin: 10px 0; line-height: 1.4; color: var(--text); border-left: 5px solid var(--pink); text-align: left; }
+        .pass-input { background: var(--purple); border: 2px solid var(--pink); color: var(--text); padding: 15px; width: 85%; border-radius: 15px; text-align: center; text-transform: uppercase; font-weight: bold; outline: none; margin-bottom: 10px; font-size: clamp(0.9rem, 2.3vw, 1.2rem); min-height: 44px; }
         .shake { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
         @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
         @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+        /* Media Queries for Larger Mobile Devices */
+        @media (min-width: 390px) {
+            #photo-grid {
+                aspect-ratio: 3 / 4;
+            }
+            
+            .slot-container {
+                gap: 8px;
+            }
+        }
+
+        @media (min-width: 430px) {
+            .wordle-grid, .keyboard {
+                max-width: 420px;
+            }
+            
+            .grid {
+                gap: 10px;
+            }
+            
+            .mem-grid, .bank-grid {
+                gap: 8px;
+            }
+            
+            .slot-container {
+                gap: 8px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            
+            .card {
+                padding: 30px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -182,7 +226,7 @@
         <h2>🖼️ Stage 2: Photo Scramble 🖼️</h2>
         <p class="instruction"> Drag the letters into the correct slots to reveal parts of the photo!</p>
         <div id="photo-grid"></div>
-        <div class="slot-container" id="slots" style="display:grid; grid-template-columns:repeat(7,1fr); gap:6px; margin-bottom:15px; width:100%;"></div>
+        <div class="slot-container" id="slots"></div>
         <div class="tile-tray" id="tray"></div>
         <div id="scramble-finish-area" class="hidden">
             <div style="font-size: 0.9rem; background: white; padding: 15px; border-radius: 15px; margin-top: 15px; border: 2px solid white; color: var(--text);">
@@ -201,7 +245,7 @@
         <div style="display:flex; gap:15px; justify-content:center; margin-bottom:10px;">
             <span class="star">☀️</span><span class="star" style="animation-delay: 0.2s;">🌙</span><span class="star" style="animation-delay: 0.4s;">✨</span>
         </div>
-        <div class="photo-lane" style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:15px 0; width:100%;">
+        <div class="photo-lane">
             <div id="lane-0" class="lane-photo"></div><div id="lane-1" class="lane-photo"></div><div id="lane-2" class="lane-photo"></div>
             <div id="lane-3" class="lane-photo"></div><div id="lane-4" class="lane-photo"></div><div id="lane-5" class="lane-photo"></div>
         </div>
