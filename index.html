@@ -209,7 +209,9 @@
         <div class="tile-tray" id="tray"></div>
         <div id="scramble-finish-area" class="hidden">
             <div style="font-size: 0.9rem; background: white; padding: 15px; border-radius: 15px; margin-top: 15px; border: 2px solid white; color: var(--text);">
-                <div style="display:flex; gap:15px; justify-content:center; margin-bottom:10px;">
+                 <b>Btw,</b> I still really like you, a lot.
+                 <br><small id="scramble-loading-text" style="opacity: 0.7;">Loading more memories...</small>
+                <br><small style="opacity: 0.7;">💕 💕 💕</small>
             </div>
         </div>
         <div id="scramble-hint-box" class="hint-row hidden">💡 <b>Hint:</b> This is what we said when we were too scared to say 'I love you', we did not know Japanese at the time though!</div>
@@ -225,7 +227,6 @@
         <div class="photo-lane">
             <div id="lane-0" class="lane-photo"></div><div id="lane-1" class="lane-photo"></div><div id="lane-2" class="lane-photo"></div>
             <div id="lane-3" class="lane-photo"></div><div id="lane-4" class="lane-photo"></div><div id="lane-5" class="lane-photo"></div>
-            <div id="lane-6" class="lane-photo"></div><div id="lane-7" class="lane-photo"></div><div id="lane-8" class="lane-photo"></div>
         </div>
         <div style="font-size:0.85rem; background:var(--gray); padding:15px; border-radius:15px; line-height:1.5; border-left: 5px solid var(--pink);">
             "A quick look back...♡"
@@ -476,21 +477,7 @@ function handleDrop(e, slotIdx) {
         if(scramProg === 7) {
             document.getElementById('tray').classList.add('hidden');
             document.getElementById('scramble-hint-btn').classList.add('hidden');
-            document.getElementById('scramble-finish-area').innerHTML = `
-        <div style="font-size: 0.9rem; background: white; padding: 15px; border-radius: 15px; margin-top: 15px; border: 2px solid white; color: var(--text);">
-             <b>Btw,</b> I still really like you, a lot.
-             <br><small id="scramble-loading-text" style="opacity: 0.7;">Loading more memories...</small>
-            <div style="margin-top: 10px; display: flex; justify-content: center; gap: 10px;">
-                <span class="star">💖</span>
-                <span class="star" style="animation-delay: 0.2s;">💕</span>
-                <span class="star" style="animation-delay: 0.4s;">💓</span>
-            </div>
-        </div>
-    `;
-    
-    document.getElementById('scramble-finish-area').classList.remove('hidden');
-    setTimeout(() => showLvl('transition-lvl'), 10000); 
-}
+            document.getElementById('scramble-finish-area').classList.remove('hidden');
             
             setTimeout(() => showLvl('transition-lvl'), 10000); 
         }
